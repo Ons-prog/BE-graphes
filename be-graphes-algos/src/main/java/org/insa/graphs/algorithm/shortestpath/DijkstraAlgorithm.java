@@ -1,6 +1,4 @@
 package org.insa.graphs.algorithm.shortestpath;
-import org.insa.graphs.algorithm.ArcInspector;
-import org.insa.graphs.algorithm.ArcInspectorFactory;
 import org.insa.graphs.algorithm.AbstractSolution.Status;
 import org.insa.graphs.algorithm.utils.*;
 import org.insa.graphs.model.*;
@@ -52,7 +50,6 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
 
             Label minLabel=tas.deleteMin();
             minLabel.setMarque(true);
-            //System.out.println("le cout du label marqué est: "+minLabel.getCoutRealise());
             //Notify the observer that a node has been marked
             notifyNodeMarked(minLabel.getSommetCourant());
 
@@ -67,7 +64,7 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
                             notifyNodeReached(minLabel.getSommetCourant());
                         }
                         y.setCoutRealise(minLabel.getCoutRealise()+data.getCost(successeur));
-                        //si c'est le PPC temps, ca sera "plus long en distance " que le PCC en distance mais plus rapide
+                        //si c'est le PPC en temps, ca sera "plus long en distance " que le PCC en distance mais plus rapide
                         y.setArcEntrantPlusCourtChemin(successeur);
                         tas.insert(y); 
                         

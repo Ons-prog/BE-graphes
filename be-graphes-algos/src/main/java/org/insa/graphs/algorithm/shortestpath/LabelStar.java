@@ -19,7 +19,8 @@ public class LabelStar extends Label {
      public void setCoutEstime(double coutEstime) {
         this.coutEstime = coutEstime;
     }
-
+    
+    @Override
     public double getCoutEstime() {
         return coutEstime;
     }
@@ -31,4 +32,9 @@ public class LabelStar extends Label {
         totalcost=this.coutEstime+super.getCoutRealise();
         return totalcost;
     }
+
+    
+   
+
+   
 }

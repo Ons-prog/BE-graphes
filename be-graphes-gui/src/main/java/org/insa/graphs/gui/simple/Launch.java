@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
-import java.io.InputStream;
+
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -83,12 +83,12 @@ public class Launch {
             new TestScenario("/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/insa.mapgr", 
                 "/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Paths/path_fr31insa_rangueil_r2.path", 
                 0, 552, 526), //On teste le chemin entre R2 et rangueil sans filtre (tous les moyens sont possibles)
-            new TestScenario("/home/jarraya/Bureau/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/toulouse.mapgr",
-                null, 1, 14531, 5910), //On teste le chemin entre Insa et Bikini en termes de distance pour les voitures (ne doit pas passer par le canal)
-            new TestScenario("/home/jarraya/Bureau/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/toulouse.mapgr",
+            new TestScenario("/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/toulouse.mapgr",
+                null, 1, 14531, 5910), //On teste le chemin entre Insa et Bikini en termes de distance en voiture (ne doit pas passer par le canal)
+            new TestScenario("/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/toulouse.mapgr",
                 null, 3, 14531, 5910), //On teste le chemin entre Insa et Bikini en termes de temps (pedesterian)
-            new TestScenario("/home/jarraya/Bureau/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/paris.mapgr", 
-                null, 0, 8626, 8626), //On teste pour un chemin de Longueur nulle
+            new TestScenario("/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/paris.mapgr", 
+                null, 0, 8626, 8626), //On teste un chemin de longueur nulle
             new TestScenario("/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/insa.mapgr", 
                 "/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Paths/path_fr31insa_rangueil_r2.path", 
                 1, 552, 526), //On teste le chemin entre R2 et rangueil pour les voitures (Chemin inexistant)
@@ -188,6 +188,9 @@ public class Launch {
             }
             
             // create the drawing for a specific scenario
+            //change the index of the array to draw a specefic one
+            // Le scenario (2) permet d'illustrer la différence entre le chemin obtenu avec Dijkstra et A*,le cout de A* est inférieur à celui de Disjkstra 
+            
             if(s==scenarios[2]){
                 Drawing drawing = createDrawing();
                 drawing.drawGraph(graph);

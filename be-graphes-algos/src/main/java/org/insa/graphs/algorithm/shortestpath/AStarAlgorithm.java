@@ -44,19 +44,27 @@ public class AStarAlgorithm extends DijkstraAlgorithm {
         int idSource = data.getOrigin().getId();
         tabLabels[idSource].setCoutRealise(0.0);
         tas.insert(tabLabels[idSource]);
+        // Notify observers about the first event (origin processed).
+        notifyOriginProcessed(data.getOrigin());
 
 
         //Itérations
         while (!tas.isEmpty()){
             LabelStar minLabel=(LabelStar)tas.deleteMin(); // demander pourquoi
             minLabel.setMarque(true);
+            //Notify the observer that a node has been marked
+            notifyNodeMarked(minLabel.getSommetCourant());
+
             for (Arc successeur : minLabel.getSommetCourant().getSuccessors()){
                 LabelStar y=tabLabels[successeur.getDestination().getId()];
-                if (!y.isMarque()) {
+                if (!y.isMarque()&& data.isAllowed(successeur)) {
                     double nouveauCout =minLabel.getCoutRealise() + data.getCost(successeur);
                     if (y.getCoutRealise()>nouveauCout) {
                         if (Double.isFinite(y.getCoutRealise())) {
                             tas.remove(y);
+                        }else { //le cout de y est infinie, on le visite pour la prmière fois
+                            //notify all observers that a node has been reached for the first time
+                            notifyNodeReached(minLabel.getSommetCourant());
                         }
                         y.setCoutRealise(nouveauCout);
                         y.setArcEntrantPlusCourtChemin(successeur);

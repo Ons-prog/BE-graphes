@@ -69,16 +69,33 @@ public class Label implements Comparable<Label> {
         cout = this.coutRealise;
         return cout;
     }
+
+    public double getCoutEstime() {
+        return 0.0;  // pas d'estimation par défaut, à redéfinir dans LabelStar
+    }
+
     
 
-    public int compareTo(Label autre){
-        int retour;
-        if (this.getTotalCost()>autre.getTotalCost())
-            retour = 1;
-        else if (this.getTotalCost()==autre.getTotalCost())
-            retour = 0;
-        else 
-            retour =-1;
-        return retour;
+    public int compareTo(Label autre) {
+        double thisTotal = this.getTotalCost();
+        double otherTotal = autre.getTotalCost();
+
+        if (thisTotal < otherTotal) {
+            return -1;
+        } else if (thisTotal > otherTotal) {
+            return 1;
+        } else {
+            // Si totalCost égal, on compare coutEstime
+            double thisEstime = this.getCoutEstime();
+            double otherEstime = autre.getCoutEstime();
+
+            if (thisEstime < otherEstime) {
+                return -1;
+            } else if (thisEstime > otherEstime) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
 }
