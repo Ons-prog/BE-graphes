@@ -55,6 +55,12 @@ public class AStarAlgorithm extends DijkstraAlgorithm {
             //Notify the observer that a node has been marked
             notifyNodeMarked(minLabel.getSommetCourant());
 
+            // 1) Dès que l’on extrait la destination, on a le meilleur chemin
+            if (minLabel.getSommetCourant().equals(data.getDestination())) {
+                notifyDestinationReached(data.getDestination());
+                break;
+            }
+
             for (Arc successeur : minLabel.getSommetCourant().getSuccessors()){
                 LabelStar y=tabLabels[successeur.getDestination().getId()];
                 if (!y.isMarque()&& data.isAllowed(successeur)) {

@@ -191,7 +191,7 @@ public class Launch {
             //change the index of the array to draw a specefic one
             // Le scenario (2) permet d'illustrer la différence entre le chemin obtenu avec Dijkstra et A*,le cout de A* est inférieur à celui de Disjkstra 
             
-            if(s==scenarios[2]){
+            
                 Drawing drawing = createDrawing();
                 drawing.drawGraph(graph);
                 if (dijikstraPath!=null) drawing.drawPath(dijikstraPath);
@@ -199,8 +199,9 @@ public class Launch {
                 if (aStarPath!=null) drawing.drawPath(aStarPath);
 
                 if (s.pathFile!=null)
-                    drawing.drawPath(expectedPath);
-            }
+                        drawing.drawPath(expectedPath);
+            
+                
 
         }
     }
